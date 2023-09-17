@@ -72,6 +72,8 @@ const Document = {
     if (additions.length === 0) return;
     const insertParams = [];
 
+    console.log('IN addDocuments (server/models.documents.js)');
+
     for (const path of additions) {
       const data = await fileData(path);
       if (!data) continue;
