@@ -90,7 +90,7 @@ function workspaceEndpoints(app) {
       }
 
       console.log(
-        `Document ${originalname} uploaded processed and successfully. It is now available in documents.`
+        `ドキュメント ${originalname} uploaded processed and successfully. It is now available in documents.`
       );
       await Telemetry.sendTelemetry("document_uploaded");
       response.status(200).json({ success: true, error: null });

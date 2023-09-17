@@ -131,6 +131,8 @@ const LanceDb = {
     fullFilePath = null
   ) {
     const { DocumentVectors } = require("../../../models/vectors");
+
+    console.log("IN : addDocumentToNamespace (lance/index.js)")
     try {
       const { pageContent, docId, ...metadata } = documentData;
       if (!pageContent || pageContent.length == 0) return false;
@@ -142,6 +144,8 @@ const LanceDb = {
         const { chunks } = cacheResult;
         const documentVectors = [];
         const submissions = [];
+
+        console.log('cacheResult が存在。')
 
         for (const chunk of chunks) {
           chunk.forEach((chunk) => {
