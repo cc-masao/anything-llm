@@ -161,6 +161,7 @@ const LanceDb = {
       // We have to do this manually as opposed to using LangChains `xyz.fromDocuments`
       // because we then cannot atomically control our namespace to granularly find/remove documents
       // from vectordb.
+      console.log('新しいドキュメントを埋め込みストアします。')
       const textSplitter = new RecursiveCharacterTextSplitter({
         chunkSize: 1000,
         chunkOverlap: 20,

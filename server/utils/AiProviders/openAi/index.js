@@ -105,6 +105,7 @@ class OpenAi {
       model: "text-embedding-ada-002",
       input: textChunks,
     });
+    console.logs('debug : embedChunks called.')
 
     return data.length > 0 &&
       data.every((embd) => embd.hasOwnProperty("embedding"))
