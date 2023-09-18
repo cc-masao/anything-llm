@@ -88,6 +88,9 @@ app.all("*", function (_, response) {
   response.sendStatus(404);   // 'not found' を返す。
 });
 
+// classcat : 19-sep-23
+const fs = require('fs');
+
 const server = require('https').createServer(
   {
     key: fs.readFileSync('./privatekey.pem'),
@@ -114,3 +117,7 @@ server // app
       process.kill(process.pid, "SIGINT");
     });
   });
+
+
+
+/*** EOF ***/
