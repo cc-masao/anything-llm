@@ -167,7 +167,7 @@ const LanceDb = {
       // from vectordb.
       console.log('新しいドキュメントを埋め込みストアします。')
       const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 1000,
+        chunkSize: 500, // 1000,
         chunkOverlap: 20,
       });
       const textChunks = await textSplitter.splitText(pageContent);
