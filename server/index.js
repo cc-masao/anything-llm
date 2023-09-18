@@ -93,8 +93,8 @@ const fs = require('fs');
 
 const server = require('https').createServer(
   {
-    key: fs.readFileSync('./privatekey.pem'),
-    cert: fs.readFileSync('./cert.pem'),
+    key: fs.readFileSync('/app/server/ssl/privatekey.pem'),
+    cert: fs.readFileSync('/app/server/ssl/cert.pem'),
   },
   app
 );

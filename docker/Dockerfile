@@ -82,8 +82,10 @@ ENV NODE_ENV=production
 ENV PATH=/app/collector/v-env/bin:$PATH
 
 # masao
-RUN openssl req -x509 -newkey rsa:2048 -keyout privatekey.pem -out cert.pem -nodes -days 365 \
- -subj '/C=JP/O=ClassCat/CN=classcat.com'
+RUN mkdir -p ./server/ssl && openssl req -x509 -newkey rsa:2048 \
+    -keyout ./server/ssl/privatekey.pem \
+    -out ./server/ssl/cert.pem -nodes -days 365 \
+    -subj '/C=JP/O=ClassCat/CN=classcat.com'
 
 # Expose the server port
 EXPOSE 3001
