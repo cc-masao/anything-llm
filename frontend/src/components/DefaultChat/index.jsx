@@ -37,10 +37,8 @@ export default function DefaultChatContainer() {
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
             AnythingLLM にようこそ。AnythingLLM は Mintplex Labs によるオープンソースの AI ツールで
-            どのようなものでも訓練済みチャットボットに変換してそれで質問したりチャットできます。
-            Welcome to AnythingLLM, AnythingLLM is an open-source AI tool by
-            Mintplex Labs that turns <i>anything</i> into a trained chatbot you
-            can query and chat with. AnythingLLM is a BYOK (bring-your-own-keys)
+            <b>どのようなもの (anything)</b> でも訓練済みチャットボットに変換してそれで質問したりチャットできます。
+            AnythingLLM is a BYOK (bring-your-own-keys)
             software so there is no subscription, fee, or charges for this
             software outside of the services you want to use with it.
           </p>
@@ -56,10 +54,9 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            AnythingLLM is the easiest way to put powerful AI products like
-            OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB, and other services
-            together in a neat package with no fuss to increase your
-            productivity by 100x.
+            AnythingLLM は、貴方の生産性を手間なく 100 倍向上させるために
+            OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB そして他のサービスのような
+            強力な AI 製品を整った素敵なパッケージに一つにまとめる最も簡単な方法です。
           </p>
         </div>
       </div>

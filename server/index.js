@@ -2,7 +2,7 @@ process.env.NODE_ENV === "development"
   ? require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` })
   : require("dotenv").config();
 
-const express = require("express");
+const express = require("express");   // express 利用
 const bodyParser = require("body-parser");
 const serveIndex = require("serve-index");
 const cors = require("cors");
@@ -85,10 +85,18 @@ app.use(
 );
 
 app.all("*", function (_, response) {
-  response.sendStatus(404);
+  response.sendStatus(404);   // 'not found' を返す。
 });
 
-app
+const server = require('https').createServer(
+  {
+    key: fs.readFileSync('./privatekey.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+  },
+  app
+);
+
+server // app
   .listen(process.env.SERVER_PORT || 3001, async () => {
     await validateTablePragmas();
     await setupTelemetry();
