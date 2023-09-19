@@ -49,6 +49,7 @@ async function validateTablePragmas(force = false) {
 	console.log('>>> debug : IN validateTablePragmas (utils/database/index.js)')
   	try {
     	if (process.env.NODE_ENV !== "development" && force === false) {
+			// got here.
       		console.log(
         		`\x1b[34m[MIGRATIONS STUBBED]\x1b[0m Please ping /migrate once server starts to run migrations`
       		);
@@ -101,6 +102,7 @@ async function setupTelemetry() {
     return;
   }
 
+  // got here.
   console.log(
     `\x1b[32m[TELEMETRY ENABLED]\x1b[0m Anonymous Telemetry enabled. Telemetry helps Mintplex Labs Inc improve AnythingLLM.`
   );
