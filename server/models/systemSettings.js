@@ -20,14 +20,17 @@ const SystemSettings = {
   createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
   lastUpdatedAt TEXT DEFAULT CURRENT_TIMESTAMP
   `,
-  migrateTable: async function () {
-    const { checkForMigrations } = require("../utils/database");
-    console.log(
-      `\x1b[34m[MIGRATING]\x1b[0m Checking for System Setting migrations`
-    );
-    const db = await this.db(false);
-    await checkForMigrations(this, db);
-  },
+
+    migrateTable: async function () {
+      console.log('>>> debug : IN migrateTable (models/systemSetting.js)')
+      const { checkForMigrations } = require("../utils/database");
+      console.log(
+        `\x1b[34m[MIGRATING]\x1b[0m Checking for System Setting migrations`
+      );
+      const db = await this.db(false);
+      await checkForMigrations(this, db);
+    },
+
   migrations: function () {
     return [];
   },

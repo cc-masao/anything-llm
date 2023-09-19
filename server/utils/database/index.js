@@ -46,25 +46,27 @@ async function checkForMigrations(model, db) {
 // This function will run each reload on dev but on production
 // it will be stubbed until the /api/migrate endpoint is GET.
 async function validateTablePragmas(force = false) {
-  try {
-    if (process.env.NODE_ENV !== "development" && force === false) {
-      console.log(
-        `\x1b[34m[MIGRATIONS STUBBED]\x1b[0m Please ping /migrate once server starts to run migrations`
-      );
-      return;
-    }
-    const { SystemSettings } = require("../../models/systemSettings");
-    const { User } = require("../../models/user");
-    const { Workspace } = require("../../models/workspace");
+	console.log('>>> debug : IN validateTablePragmas (utils/database/index.js)')
+  	try {
+    	if (process.env.NODE_ENV !== "development" && force === false) {
+      		console.log(
+        		`\x1b[34m[MIGRATIONS STUBBED]\x1b[0m Please ping /migrate once server starts to run migrations`
+      		);
+      		return;
+    	}
+
+		const { SystemSettings } = require("../../models/systemSettings");
+   		const { User } = require("../../models/user");
+    	const { Workspace } = require("../../models/workspace");
     const { WorkspaceUser } = require("../../models/workspaceUsers");
     const { Document } = require("../../models/documents");
     const { DocumentVectors } = require("../../models/vectors");
     const { WorkspaceChats } = require("../../models/workspaceChats");
     const { Invite } = require("../../models/invite");
     const { WelcomeMessages } = require("../../models/welcomeMessages");
-    const { ApiKey } = require("../../models/apiKeys");
+    	const { ApiKey } = require("../../models/apiKeys");
 
-    await SystemSettings.migrateTable();
+    	await SystemSettings.migrateTable();
     await User.migrateTable();
     await Workspace.migrateTable();
     await WorkspaceUser.migrateTable();
@@ -72,12 +74,12 @@ async function validateTablePragmas(force = false) {
     await DocumentVectors.migrateTable();
     await WorkspaceChats.migrateTable();
     await Invite.migrateTable();
-    await WelcomeMessages.migrateTable();
-    await ApiKey.migrateTable();
-  } catch (e) {
-    console.error(`validateTablePragmas: Migrations failed`, e);
-  }
-  return;
+    	await WelcomeMessages.migrateTable();
+   	 	await ApiKey.migrateTable();
+  	} catch (e) {
+    	console.error(`validateTablePragmas: Migrations failed`, e);
+  	}
+  	return;
 }
 
 // Telemetry is anonymized and your data is never read. This can be disabled by setting

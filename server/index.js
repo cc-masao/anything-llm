@@ -69,6 +69,7 @@ apiRouter.post("/v/:command", async (request, response) => {
   }
 });
 
+
 if (process.env.NODE_ENV !== "development") {
   app.use(
     express.static(path.resolve(__dirname, "public"), { extensions: ["js"] })
