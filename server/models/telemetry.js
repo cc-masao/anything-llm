@@ -3,6 +3,7 @@ const { SystemSettings } = require("./systemSettings");
 
 const Telemetry = {
   // Write-only key. It can't read events or any of your other data, so it's safe to use in public apps.
+  // 何のキー？
   pubkey: "phc_9qu7QLpV8L84P3vFmEiZxL020t2EqIubP7HHHxrSsqS",
   stubDevelopmentEvents: true, // [DO NOT TOUCH] Core team only.
   label: "telemetry_id",
@@ -26,23 +27,28 @@ const Telemetry = {
     const { PostHog } = require("posthog-node");
     return new PostHog(this.pubkey);
   },
+
+
   sendTelemetry: async function (event, properties = {}) {
-    try {
-      const { client, distinctId } = await this.connect();
-      if (!client) return;
-      console.log(`\x1b[32m[TELEMETRY SENT]\x1b[0m`, {
-        event,
-        properties,
-      });
-      client.capture({
-        event,
-        distinctId,
-        properties,
-      });
-    } catch {
-      return;
-    }
-  },
+		console.log('>>> debug : IN sendTelemetry (server/models/telemetry.js)')
+    	try {
+      		const { client, distinctId } = await this.connect();
+      		if (!client) return;
+      
+	  		console.log(`\x1b[32m[TELEMETRY SENT]\x1b[0m`, {
+        		event,
+        		properties,
+      		});
+      		client.capture({
+        		event,
+        		distinctId,
+        		properties,
+      		});
+    	} catch {
+      		return;
+    	}
+  	},
+
   flush: async function () {
     const { client } = this.client();
     if (!client) return;

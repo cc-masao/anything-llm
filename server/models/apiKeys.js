@@ -1,4 +1,7 @@
+
 const { Telemetry } = require("./telemetry");
+
+// 何故 telemetry が必要？
 
 const ApiKey = {
   tablename: "api_keys",

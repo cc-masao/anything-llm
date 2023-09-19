@@ -9,7 +9,41 @@ const { storeVectorResult, cachedVectorInformation } = require("../../files");
 const { v4: uuidv4 } = require("uuid");
 const { chatPrompt } = require("../../chats");
 
+/*
+$ pwd
+/app/server/storage
+
+$ ls -l
+total 68
+-rw-rw-r-- 1 anythingllm anythingllm  1652 Sep 19 14:12 README.md
+-rw-r--r-- 1 anythingllm anythingllm 45056 Sep 19 14:20 anythingllm.db
+drwxrwxr-x 2 anythingllm anythingllm  4096 Sep 19 14:12 assets
+drwxrwxr-x 3 anythingllm anythingllm  4096 Sep 19 14:19 documents
+drwxr-xr-x 3 anythingllm anythingllm  4096 Sep 19 14:20 lancedb
+drwxrwxr-x 2 anythingllm anythingllm  4096 Sep 19 14:20 vector-cache
+
+$ ls -l documents/
+total 8
+-rw-rw-r-- 1 anythingllm anythingllm  699 Sep 19 14:12 DOCUMENTS.md
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:19 custom-documents
+
+$ ls -l documents/custom-documents/
+total 32
+-rw-r--r-- 1 anythingllm anythingllm  9234 Sep 19 14:19 ayano-b67e2c69-e19f-4c9f-8d10-8388ad6126c7.json
+-rw-r--r-- 1 anythingllm anythingllm 17027 Sep 19 14:19 yagami-138ef771-5c2b-4f3d-8af0-201f28b9e8fe.json
+
+$ ls -l lancedb/
+total 4
+drwxr-xr-x 4 anythingllm anythingllm 4096 Sep 19 14:20 masao.lance
+
+$ ls -l lancedb/masao.lance/
+total 12
+-rw-r--r-- 1 anythingllm anythingllm  494 Sep 19 14:20 _latest.manifest
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:20 _versions
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:20 data
+*/
 const LanceDb = {
+	//  ./server/storage/lancedb
   	uri: `${
     	!!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"
   	}lancedb`,
@@ -17,14 +51,14 @@ const LanceDb = {
   	name: "LanceDb",
 
 	connect: async function () {
-		console.log('>>> debug : LanceDb connect called.')
+		console.log('>>> debug : IN connect (server/utils/vectorDbProviders/lance/index.js)')
 
 		// 環境変数は process.env オブジェクトを参照。
 		// process モジュールはデフォルトで使用可能、require する必要はなし。
 		if (process.env.VECTOR_DB !== "lancedb")
       		throw new Error("LanceDB::Invalid ENV settings");
 
-		console.log(this.uri)
+		console.log(this.uri) //  ./server/storage/lancedb
     	const client = await lancedb.connect(this.uri);
     	return { client };
 	},
@@ -96,17 +130,23 @@ const LanceDb = {
       ...collection, // collection を spread
     };
   },
-  updateOrCreateCollection: async function (client, data = [], namespace) {
-    const hasNamespace = await this.hasNamespace(namespace);
-    if (hasNamespace) {
-      const collection = await client.openTable(namespace);
-      await collection.add(data);
-      return true;
-    }
 
-    await client.createTable(namespace, data);
-    return true;
-  },
+  	updateOrCreateCollection: async function (client, data = [], namespace) {
+		console.log('>>> debug : IN updateOrCreateCollection (utils/vectorDbProviders/lance/index.js))')
+		console.log (namespace)
+
+		const hasNamespace = await this.hasNamespace(namespace);
+
+		if (hasNamespace) {
+      		const collection = await client.openTable(namespace);
+      		await collection.add(data);
+      		return true;
+    	}
+
+    	await client.createTable(namespace, data);
+    	return true;
+  	},
+
   hasNamespace: async function (namespace = null) {
     if (!namespace) return false;
     const { client } = await this.connect();
