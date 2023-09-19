@@ -86,20 +86,20 @@ function WorkspaceSettingTabs({ selectedTab, changeTab }) {
       <ul className="flex md:flex-wrap overflow-x-scroll no-scroll -mb-px text-sm gap-x-2 font-medium text-center text-gray-500 dark:text-gray-400">
         <WorkspaceTab
           active={selectedTab === "documents"}
-          displayName="Documents"
+          displayName="ドキュメント"
           tabName="documents"
           icon={<Archive className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}
         />
         <WorkspaceTab
           active={selectedTab === "upload"}
-          displayName="Upload Docs"
+          displayName="ドキュメントのアップロード"
           tabName="upload"
           icon={<UploadCloud className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}
         />
         <WorkspaceTab
-          active={selectedTab === "settings"}
+          active={selectedTab === "設定"}
           displayName="Settings"
           tabName="settings"
           icon={<Sliders className="h-4 w-4 flex-shrink-0" />}

@@ -95,8 +95,9 @@ export default function DocumentSettings({ workspace }) {
     await Workspace.modifyEmbeddings(workspace.slug, changes)
       .then((res) => {
         if (res && res.workspace) {
-          showToast("Workspace updated successfully.", "success", {
-            clear: true,
+          // showToast("Workspace updated successfully.", "success", {
+          showToast("ワークスペースの更新に成功しました。", "success", {
+          clear: true,
           });
         } else {
           showToast("Workspace update failed.", "error", { clear: true });
@@ -182,6 +183,7 @@ export default function DocumentSettings({ workspace }) {
 
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
+              ワークスペースに追加したり削除するフォルダを選択します。
               Select folders to add or remove from workspace.
             </p>
             <p className="text-gray-800 dark:text-stone-400 text-xs italic">

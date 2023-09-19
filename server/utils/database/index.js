@@ -45,6 +45,7 @@ async function checkForMigrations(model, db) {
 // and the server will abort and the container will exit.
 // This function will run each reload on dev but on production
 // it will be stubbed until the /api/migrate endpoint is GET.
+// 起動時に呼ばれるが、何もしない。
 async function validateTablePragmas(force = false) {
 	console.log('>>> debug : IN validateTablePragmas (utils/database/index.js)')
   	try {
