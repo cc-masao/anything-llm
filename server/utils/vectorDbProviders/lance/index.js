@@ -16,14 +16,17 @@ const LanceDb = {
 
   name: "LanceDb",
 
-  connect: async function () {
-	console.log('#debug -> LanceDb connect called.')
-    if (process.env.VECTOR_DB !== "lancedb")
-      throw new Error("LanceDB::Invalid ENV settings");
+	connect: async function () {
+		console.log('>>> debug : LanceDb connect called.')
 
-    const client = await lancedb.connect(this.uri);
-    return { client };
-  },
+		// 環境変数は process.env オブジェクトを参照。
+		// process モジュールはデフォルトで使用可能、require する必要はなし。
+		if (process.env.VECTOR_DB !== "lancedb")
+      		throw new Error("LanceDB::Invalid ENV settings");
+
+    	const client = await lancedb.connect(this.uri);
+    	return { client };
+	},
 
   heartbeat: async function () {
     await this.connect();
