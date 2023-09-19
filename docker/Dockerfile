@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libx11-6 libx11-xcb1 libxcb1 \
         libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
         libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release \
-        xdg-utils && \
+        xdg-utils git && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -yq --no-install-recommends nodejs && \
     curl -LO https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn_1.22.19_all.deb \
