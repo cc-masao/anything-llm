@@ -10,11 +10,11 @@ const { v4: uuidv4 } = require("uuid");
 const { chatPrompt } = require("../../chats");
 
 const LanceDb = {
-  uri: `${
-    !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"
-  }lancedb`,
+  	uri: `${
+    	!!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"
+  	}lancedb`,
 
-  name: "LanceDb",
+  	name: "LanceDb",
 
 	connect: async function () {
 		console.log('>>> debug : LanceDb connect called.')
@@ -24,6 +24,7 @@ const LanceDb = {
 		if (process.env.VECTOR_DB !== "lancedb")
       		throw new Error("LanceDB::Invalid ENV settings");
 
+		console.log(this.uri)
     	const client = await lancedb.connect(this.uri);
     	return { client };
 	},
@@ -59,34 +60,40 @@ const LanceDb = {
   embedder: function () {
     return new OpenAIEmbeddings({ openAIApiKey: process.env.OPEN_AI_KEY });
   },
-  similarityResponse: async function (client, namespace, queryVector) {
-    const collection = await client.openTable(namespace);
-    const result = {
-      contextTexts: [],
-      sourceDocuments: [],
-    };
 
-    const response = await collection
-      .search(queryVector)
-      .metricType("cosine")
-      .limit(5)
-      .execute();
+  	// 類似性検索
+  	similarityResponse: async function (client, namespace, queryVector) {
+		console.log('>>> debug : IN similarityResponse (utils/vectorDbProviders/lance/index.js))')
 
-    response.forEach((item) => {
-      const { vector: _, ...rest } = item;
-      result.contextTexts.push(rest.text);
-      result.sourceDocuments.push(rest);
-    });
+		const collection = await client.openTable(namespace);
+    	const result = {
+      		contextTexts: [],
+      		sourceDocuments: [],
+	    };
 
-    return result;
-  },
+		// TODO: limit と検索の種類を可変に
+    	const response = await collection
+      		.search(queryVector)
+      		.metricType("cosine")
+      		.limit(2)	// default : 5
+      		.execute();
+
+    	response.forEach((item) => {
+      		const { vector: _, ...rest } = item;
+      		result.contextTexts.push(rest.text);
+      		result.sourceDocuments.push(rest);
+    	});
+
+    	return result;
+  	},
+
   namespace: async function (client, namespace = null) {
     if (!namespace) throw new Error("No namespace value provided.");
     const collection = await client.openTable(namespace).catch(() => false);
     if (!collection) return null;
 
     return {
-      ...collection,
+      ...collection, // collection を spread
     };
   },
   updateOrCreateCollection: async function (client, data = [], namespace) {

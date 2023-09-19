@@ -21,19 +21,21 @@ const SystemSettings = {
   lastUpdatedAt TEXT DEFAULT CURRENT_TIMESTAMP
   `,
 
-    migrateTable: async function () {
-      console.log('>>> debug : IN migrateTable (models/systemSetting.js)')
-      const { checkForMigrations } = require("../utils/database");
-      console.log(
-        `\x1b[34m[MIGRATING]\x1b[0m Checking for System Setting migrations`
-      );
-      const db = await this.db(false);
-      await checkForMigrations(this, db);
+	migrateTable: async function () {
+    	console.log('>>> debug : IN SystemSettings::migrateTable (models/systemSetting.js)')
+
+		const { checkForMigrations } = require("../utils/database");
+    	console.log(
+    		`\x1b[34m[MIGRATING]\x1b[0m Checking for System Setting migrations`
+    	);
+    	const db = await this.db(false);
+    	await checkForMigrations(this, db);
     },
 
-  migrations: function () {
-    return [];
-  },
+	migrations: function () {
+    	return [];
+	},
+
   db: async function (tracing = true) {
     const sqlite3 = require("sqlite3").verbose();
     const { open } = require("sqlite");
@@ -52,6 +54,7 @@ const SystemSettings = {
     if (tracing) db.on("trace", (sql) => console.log(sql));
     return db;
   },
+
   currentSettings: async function () {
     const llmProvider = process.env.LLM_PROVIDER || "openai";
     const vectorDB = process.env.VECTOR_DB || "pinecone";
