@@ -1,3 +1,6 @@
+
+/*** LanceDB ***/
+
 const lancedb = require("vectordb");
 const { toChunks, getLLMProvider } = require("../../helpers");
 const { OpenAIEmbeddings } = require("langchain/embeddings/openai");
@@ -10,14 +13,18 @@ const LanceDb = {
   uri: `${
     !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"
   }lancedb`,
+
   name: "LanceDb",
+
   connect: async function () {
+	console.log('#debug -> LanceDb connect called.')
     if (process.env.VECTOR_DB !== "lancedb")
       throw new Error("LanceDB::Invalid ENV settings");
 
     const client = await lancedb.connect(this.uri);
     return { client };
   },
+
   heartbeat: async function () {
     await this.connect();
     return { heartbeat: Number(new Date()) };
