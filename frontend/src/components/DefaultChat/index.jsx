@@ -36,11 +36,11 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            AnythingLLM にようこそ。AnythingLLM は Mintplex Labs によるオープンソースの AI ツールで
+            ClassCat&reg; KBase にようこそ。ClassCat KBase は AnythingLLM をクラスキャットが日本語化しカスタマイズした製品です。
+             AnythingLLM は Mintplex Labs によるオープンソースの AI ツールで
             <b>どのようなもの (anything)</b> でも訓練済みチャットボットに変換してそれで質問したりチャットできます。
-            AnythingLLM is a BYOK (bring-your-own-keys)
-            software so there is no subscription, fee, or charges for this
-            software outside of the services you want to use with it.
+            AnythingLLM は BYOK (Bring Your Own Keys) ソフトウェアですので、
+            それとともに使用したいサービス以外で、このソフトウェアに対するサブスクリプション、料金、課金はありません。
           </p>
         </div>
       </div>
