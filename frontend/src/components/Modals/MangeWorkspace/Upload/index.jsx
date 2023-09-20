@@ -167,7 +167,7 @@ function ModalWrapper({ deleteWorkspace, children }) {
         <div className="flex flex-col gap-y-1 w-full">
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
-              Add documents to your workspace.
+              貴方のワークスペースにドキュメントを追加します。
             </p>
             <p className="text-gray-600 dark:text-stone-400 text-xs ">
               These files will be uploaded to the document processor running on

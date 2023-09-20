@@ -63,7 +63,7 @@ function grepCommand(message) {
 async function chatWithWorkspace(
   workspace,
   message,
-  chatMode = "chat",
+  chatMode = "query",    // "chat",
   user = null
 ) {
   const uuid = uuidv4();

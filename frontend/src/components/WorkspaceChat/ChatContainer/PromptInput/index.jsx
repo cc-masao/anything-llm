@@ -139,7 +139,7 @@ const Tracking = memo(({ workspaceSlug }) => {
   return (
     <div className="flex flex-col md:flex-row w-full justify-center items-center gap-2 mb-2 px-4 mx:px-0">
       <p className="bg-gray-200 dark:bg-stone-600 text-gray-800 dark:text-slate-400 text-xs px-2 rounded-lg font-mono text-center">
-        Chat mode: {chatMode}
+        チャットモード: {chatMode}
       </p>
       <p className="text-slate-400 text-xs text-center">
         Responses from system may produce inaccurate or invalid responses - use

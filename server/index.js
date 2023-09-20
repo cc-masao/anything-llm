@@ -1,8 +1,10 @@
+/*** server/index.js ***/
+
 process.env.NODE_ENV === "development"
   ? require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` })
   : require("dotenv").config();
 
-const express = require("express");   // express 利用
+const express = require("express");   // express
 const bodyParser = require("body-parser");
 const serveIndex = require("serve-index");
 const cors = require("cors");
@@ -21,6 +23,7 @@ const { developerEndpoints } = require("./endpoints/api");
 const app = express();
 const apiRouter = express.Router();
 const FILE_LIMIT = "3GB";
+
 
 app.use(cors({ origin: true }));
 app.use(bodyParser.text({ limit: FILE_LIMIT }));
