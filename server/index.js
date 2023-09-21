@@ -26,13 +26,15 @@ const FILE_LIMIT = "3GB";
 
 
 app.use(cors({ origin: true }));
+
+// HTML(ejs)のformのinputに入力された値を受け取れるようにする。
 app.use(bodyParser.text({ limit: FILE_LIMIT }));
 app.use(bodyParser.json({ limit: FILE_LIMIT }));
 app.use(
-  bodyParser.urlencoded({
-    limit: FILE_LIMIT,
-    extended: true,
-  })
+  	bodyParser.urlencoded({
+    	limit: FILE_LIMIT,
+    	extended: true,
+  	})
 );
 
 app.use("/api", apiRouter);

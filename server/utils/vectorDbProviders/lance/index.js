@@ -9,6 +9,9 @@ const { storeVectorResult, cachedVectorInformation } = require("../../files");
 const { v4: uuidv4 } = require("uuid");
 const { chatPrompt } = require("../../chats");
 
+// TODO (masao)
+// o 検索数のデフォルトを可変に。 (21-sep-23)
+
 // masao
 const { format } = require('util')
 
@@ -123,7 +126,7 @@ const LanceDb = {
 		// TODO: limit と検索の種類を可変に
     	const response = await collection
       		.search(queryVector)
-      		.metricType("cosine")
+      		.metricType("cosine")   // cosine 類似度
       		.limit(2)	// default : 5
       		.execute();
 
@@ -181,6 +184,7 @@ const LanceDb = {
     const collections = await this.tables();
     return collections.includes(namespace);
   },
+
   deleteVectorsInNamespace: async function (client, namespace = null) {
     const fs = require("fs");
     fs.rm(`${client.uri}/${namespace}.lance`, { recursive: true }, () => null);

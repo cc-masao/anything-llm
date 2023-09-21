@@ -25,24 +25,27 @@ const Invite = {
     const uuidAPIKey = require("uuid-apikey");
     return uuidAPIKey.create().apiKey;
   },
-  db: async function (tracing = true) {
-    const sqlite3 = require("sqlite3").verbose();
-    const { open } = require("sqlite");
 
-    const db = await open({
-      filename: `${
-        !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "storage/"
-      }anythingllm.db`,
-      driver: sqlite3.Database,
-    });
+  	db: async function (tracing = true) {
+		console.log(">>> debug : IN Invite::db (models/invite.js)")
+    	const sqlite3 = require("sqlite3").verbose();
+    	const { open } = require("sqlite");
 
-    await db.exec(
-      `PRAGMA foreign_keys = ON;CREATE TABLE IF NOT EXISTS ${this.tablename} (${this.colsInit})`
-    );
+    	const db = await open({
+      		filename: `${
+        		!!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "storage/"
+      		}anythingllm.db`,
+      		driver: sqlite3.Database,
+    	});
 
-    if (tracing) db.on("trace", (sql) => console.log(sql));
-    return db;
-  },
+    	await db.exec(
+      		`PRAGMA foreign_keys = ON;CREATE TABLE IF NOT EXISTS ${this.tablename} (${this.colsInit})`
+    	);
+
+    	if (tracing) db.on("trace", (sql) => console.log(sql));
+    	return db;
+  	},
+
   create: async function (createdByUserId = 0) {
     const db = await this.db();
     const { id, success, message } = await db
