@@ -88,7 +88,7 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Workspace Name
+                  ワークスペース名
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
                   This will only change the display name of your workspace.
