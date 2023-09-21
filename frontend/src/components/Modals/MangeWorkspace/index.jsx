@@ -53,7 +53,7 @@ export default function ManageWorkspace({
           <div className="flex flex-col gap-y-1 border-b dark:border-gray-600 px-4 pt-4 ">
             <div className="flex items-start justify-between rounded-t ">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Update "{workspace.name}"
+                "{workspace.name}" の更新
               </h3>
               <button
                 onClick={hideModal}
@@ -99,8 +99,8 @@ function WorkspaceSettingTabs({ selectedTab, changeTab }) {
           onClick={changeTab}
         />
         <WorkspaceTab
-          active={selectedTab === "設定"}
-          displayName="Settings"
+          active={selectedTab === "settings"}
+          displayName="設定"
           tabName="settings"
           icon={<Sliders className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}
