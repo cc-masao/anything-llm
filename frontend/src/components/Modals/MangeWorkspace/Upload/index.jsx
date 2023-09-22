@@ -170,9 +170,8 @@ function ModalWrapper({ deleteWorkspace, children }) {
               貴方のワークスペースにドキュメントを追加します。
             </p>
             <p className="text-gray-600 dark:text-stone-400 text-xs ">
-              These files will be uploaded to the document processor running on
-              this AnythingLLM instance. These files are not sent or shared with
-              a third party.
+              これらのファイルは ClassCat KBase インスタンス上で動作するドキュメントプロセッサにアップロードされます。
+              これらのファイルはサードパーティに送られたり共有されることはありません。
             </p>
             {process.env.NODE_ENV !== "production" && (
               <div className="mt-2 text-gray-600 dark:text-stone-400 text-xs">
