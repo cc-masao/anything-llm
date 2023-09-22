@@ -46,6 +46,8 @@ COPY ./docker/docker-healthcheck.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
     chmod +x /usr/local/bin/docker-healthcheck.sh
 
+RUN update-locale LANG=ja_JP.UTF-8
+
 USER anythingllm
 
 WORKDIR /app
@@ -97,7 +99,6 @@ RUN mkdir -p ./server/ssl && openssl req -x509 -newkey rsa:2048 \
 # Expose the server port
 EXPOSE 3001
 
-RUN update-locale LANG=ja_JP.UTF-8
 ENV LANG ja_JP.UTF-8
 
 # Setup the healthcheck
