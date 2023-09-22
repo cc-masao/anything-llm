@@ -151,7 +151,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
         )}
       </div>
       <p className="text-gray-600 dark:text-stone-400 text-xs ">
-        supported file extensions are{" "}
+        サポートされるファイル拡張子は{" "}
         <code className="text-xs bg-gray-200 text-gray-800 dark:bg-stone-800 dark:text-slate-400 font-mono rounded-sm px-1">
           {Object.values(fileTypes).flat().join(" ")}
         </code>
