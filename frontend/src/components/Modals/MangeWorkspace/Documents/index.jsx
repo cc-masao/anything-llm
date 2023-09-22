@@ -175,7 +175,7 @@ export default function DocumentSettings({ workspace }) {
             <div className="mb-4 w-full gap-x-2 rounded-lg h-10 border bg-orange-200 border-orange-800 dark:bg-orange-300 text-orange-800 flex  items-center justify-center">
               <AlertTriangle className="h-6 w-6" />
               <p className="text-sm">
-                You don't have any files uploaded. Upload a file via the "Upload
+                アップロードされたファイルがありません。「ドキュメントのアップロード」タブからファイルをアップロードしてください。
                 Docs" tab.
               </p>
             </div>
@@ -184,7 +184,6 @@ export default function DocumentSettings({ workspace }) {
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
               ワークスペースに追加したり削除するフォルダを選択します。
-              Select folders to add or remove from workspace.
             </p>
             <p className="text-gray-800 dark:text-stone-400 text-xs italic">
               {selectedFiles.length} documents in workspace selected.
@@ -212,7 +211,7 @@ export default function DocumentSettings({ workspace }) {
           type="button"
           className="border border-transparent text-gray-500 bg-white hover:bg-red-100 rounded-lg whitespace-nowrap text-sm font-medium px-5 py-2.5 hover:text-red-900 focus:z-10 dark:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-red-600"
         >
-          Delete Workspace
+          ワークスペースの削除
         </button>
 
         <div className="flex items-center">

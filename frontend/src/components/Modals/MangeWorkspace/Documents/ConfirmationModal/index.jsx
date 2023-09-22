@@ -48,7 +48,7 @@ export default function ConfirmationModal({
       <div className="w-fit px-10 p-4 min-w-1/2 rounded-lg bg-white shadow dark:bg-stone-700 text-black dark:text-slate-200">
         <div className="flex flex-col w-full">
           <p className="font-semibold">
-            Are you sure you want to embed these documents?
+            これらのドキュメントを埋め込みますか？
           </p>
 
           <div className="flex flex-col gap-y-1">
