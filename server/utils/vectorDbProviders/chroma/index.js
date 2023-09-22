@@ -4,24 +4,33 @@ const { storeVectorResult, cachedVectorInformation } = require("../../files");
 const { v4: uuidv4 } = require("uuid");
 const { toChunks, getLLMProvider } = require("../../helpers");
 const { chatPrompt } = require("../../chats");
+// masao
+const {format} = require('util')
 
 const Chroma = {
-  name: "Chroma",
-  connect: async function () {
-    if (process.env.VECTOR_DB !== "chroma")
-      throw new Error("Chroma::Invalid ENV settings");
+  	name: "Chroma",
 
-    const client = new ChromaClient({
-      path: process.env.CHROMA_ENDPOINT, // if not set will fallback to localhost:8000
-    });
+	connect: async function () {
+    	if (process.env.VECTOR_DB !== "chroma")
+      		throw new Error("Chroma::Invalid ENV settings");
+			
+		const message = format('debug >>> going to connect %s', process.env.CHROMA_ENDPOINT)
+		console.log(message)
 
-    const isAlive = await client.heartbeat();
-    if (!isAlive)
-      throw new Error(
-        "ChromaDB::Invalid Heartbeat received - is the instance online?"
-      );
-    return { client };
-  },
+		const client = new ChromaClient({
+      		path: process.env.CHROMA_ENDPOINT, // if not set will fallback to localhost:8000
+    	});
+
+    	const isAlive = await client.heartbeat();
+    	if (!isAlive)
+      		throw new Error(
+        		"ChromaDB::Invalid Heartbeat received - is the instance online?"
+      		);
+		
+		console.log('debug >>> connected')
+    	return { client };
+  	},
+
   heartbeat: async function () {
     const { client } = await this.connect();
     return { heartbeat: await client.heartbeat() };

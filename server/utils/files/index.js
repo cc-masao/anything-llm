@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { v5: uuidv5 } = require("uuid");
 
+// STORAGE_DIR="./server/storage"
 async function collectDocumentData(folderName = null) {
   if (!folderName) throw new Error("No docPath provided in request");
   const folder =

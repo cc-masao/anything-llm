@@ -176,7 +176,6 @@ export default function DocumentSettings({ workspace }) {
               <AlertTriangle className="h-6 w-6" />
               <p className="text-sm">
                 アップロードされたファイルがありません。「ドキュメントのアップロード」タブからファイルをアップロードしてください。
-                Docs" tab.
               </p>
             </div>
           )}
@@ -186,7 +185,7 @@ export default function DocumentSettings({ workspace }) {
               ワークスペースに追加したり削除するフォルダを選択します。
             </p>
             <p className="text-gray-800 dark:text-stone-400 text-xs italic">
-              {selectedFiles.length} documents in workspace selected.
+              選択されたワークスペース内に {selectedFiles.length} ドキュメント。
             </p>
           </div>
           <div className="w-full h-auto border border-slate-200 dark:border-stone-600 rounded-lg px-4 py-2">
