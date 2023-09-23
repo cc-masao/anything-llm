@@ -7,8 +7,8 @@ import AnythingLLMLight from "../media/logo/classcat-kbase-light.png";
 import AnythingLLMDark from "../media/logo/classcat-kbase-dark.png";
 
 export default function useLogo() {
-  const [logo, setLogo] = useState("");
-  const prefersDarkMode = usePrefersDarkMode();
+  	const [logo, setLogo] = useState("");
+  	const prefersDarkMode = usePrefersDarkMode();
 
   useEffect(() => {
     async function fetchInstanceLogo() {

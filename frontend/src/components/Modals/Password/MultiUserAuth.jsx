@@ -45,7 +45,7 @@ export default function MultiUserAuth() {
                 htmlFor="username"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Instance Username
+                インスタンス・ユーザ名
               </label>
               <input
                 name="username"
@@ -61,7 +61,7 @@ export default function MultiUserAuth() {
                 htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Instance Password
+                インスタンス・パスワード
               </label>
               <input
                 name="password"
