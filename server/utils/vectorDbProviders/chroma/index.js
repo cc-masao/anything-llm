@@ -53,24 +53,29 @@ const Chroma = {
     const namespace = await this.namespace(client, _namespace);
     return namespace?.vectorCount || 0;
   },
-  similarityResponse: async function (client, namespace, queryVector) {
-    const collection = await client.getCollection({ name: namespace });
-    const result = {
-      contextTexts: [],
-      sourceDocuments: [],
-    };
 
-    const response = await collection.query({
-      queryEmbeddings: queryVector,
-      nResults: 4,
-    });
-    response.ids[0].forEach((_, i) => {
-      result.contextTexts.push(response.documents[0][i]);
-      result.sourceDocuments.push(response.metadatas[0][i]);
-    });
+  	similarityResponse: async function (client, namespace, queryVector) {
+		console.log('>> debug > IN Chroma::similarityResponse (utils/vectorDbProviders/chroma/index.js) ')
 
-    return result;
-  },
+		const collection = await client.getCollection({ name: namespace });
+      	const result = {
+        	contextTexts: [],
+      		sourceDocuments: [],
+    	};
+
+    	const response = await collection.query({
+      		queryEmbeddings: queryVector,
+      		nResults: 3, // 4,
+    	});
+
+		response.ids[0].forEach((_, i) => {
+      		result.contextTexts.push(response.documents[0][i]);
+      		result.sourceDocuments.push(response.metadatas[0][i]);
+    	});
+
+    	return result;
+  	},
+
   namespace: async function (client, namespace = null) {
     if (!namespace) throw new Error("No namespace value provided.");
     const collection = await client
