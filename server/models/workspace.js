@@ -99,7 +99,7 @@ const Workspace = {
         var enode = encoding.detect(name);
         console.log(encode)
 
-        if (encoding.detect(name) !== "ASCII") { result: null, message: "name must be ascii."};
+        if (encoding.detect(name) !== "ASCII") return { result: null, message: "name must be ascii."};
         // 'UNICODE'
         // 'ASCII'
 
