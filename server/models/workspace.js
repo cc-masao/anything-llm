@@ -4,6 +4,10 @@ const { checkForMigrations } = require("../utils/database");
 const { WorkspaceUser } = require("./workspaceUsers");
 const { escape } = require("sqlstring-sqlite");
 
+/*
+sqlite3 使用
+*/
+
 const Workspace = {
     tablename: "workspaces",
 
@@ -62,24 +66,28 @@ const Workspace = {
       },
     ];
   },
-  db: async function (tracing = true) {
-    const sqlite3 = require("sqlite3").verbose();
-    const { open } = require("sqlite");
 
-    const db = await open({
-      filename: `${
-        !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "storage/"
-      }anythingllm.db`,
-      driver: sqlite3.Database,
-    });
+    db: async function (tracing = true) {
+        consolg.log('> debug > Workspace::db (server/models/workspace.js)')
+        const sqlite3 = require("sqlite3").verbose();
+        const { open } = require("sqlite");
 
-    await db.exec(
-      `PRAGMA foreign_keys = ON;CREATE TABLE IF NOT EXISTS ${this.tablename} (${this.colsInit})`
-    );
+        const db = await open({
+            filename: `${
+                !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "storage/"
+            }anythingllm.db`,
+            driver: sqlite3.Database,
+        });
 
-    if (tracing) db.on("trace", (sql) => console.log(sql));
-    return db;
-  },
+        // ここでテーブル初期化
+        console.log('>> debug > workspaces テーブル作成')
+        await db.exec(
+            `PRAGMA foreign_keys = ON;CREATE TABLE IF NOT EXISTS ${this.tablename} (${this.colsInit})`
+        );
+
+        if (tracing) db.on("trace", (sql) => console.log(sql));
+        return db;
+    },
 
     new: async function (name = null, creatorId = null) {
         consolg.log('> debug > Workspace::new (server/models/workspace.js)')
