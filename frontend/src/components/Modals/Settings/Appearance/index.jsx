@@ -5,8 +5,9 @@ import System from "../../../../models/system";
 import EditingChatBubble from "../../../EditingChatBubble";
 
 // import AnythingLLMLight from "../../../../media/logo/anything-llm-light.png";
+// import AnythingLLMDark from "../../../../media/logo/anything-llm-dark.png";
 import AnythingLLMLight from "../../../../media/logo/classcat-kbase-light.png";
-import AnythingLLMDark from "../../../../media/logo/anything-llm-dark.png";
+import AnythingLLMDark from "../../../../media/logo/classcat-kbase-dark.png";
 
 import showToast from "../../../../utils/toast";
 
