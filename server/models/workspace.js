@@ -68,7 +68,7 @@ const Workspace = {
   },
 
     db: async function (tracing = true) {
-        consolg.log('> debug > Workspace::db (server/models/workspace.js)')
+        console.log('> debug > Workspace::db (server/models/workspace.js)')
         const sqlite3 = require("sqlite3").verbose();
         const { open } = require("sqlite");
 
@@ -90,7 +90,7 @@ const Workspace = {
     },
 
     new: async function (name = null, creatorId = null) {
-        consolg.log('> debug > Workspace::new (server/models/workspace.js)')
+        console.log('> debug > Workspace::new (server/models/workspace.js)')
         if (!name) return { result: null, message: "name cannot be null" };
         var slug = slugify(name, { lower: true });
 
