@@ -19,5 +19,8 @@
     "generate:cloudformation": "node cloud-deployments/aws/cloudformation/generate.mjs",
     "generate::gcp_deployment": "node cloud-deployments/gcp/deployment/generate.mjs"
   },
-  "private": false
+  "private": false,
+  "dependencies": {
+    "encoding-japanese": "^2.0.0"
+  }
 }

@@ -4,6 +4,9 @@ const { checkForMigrations } = require("../utils/database");
 const { WorkspaceUser } = require("./workspaceUsers");
 const { escape } = require("sqlstring-sqlite");
 
+// masao
+const encoding = require('encoding-japanese');
+
 /*
 sqlite3 使用
 */
@@ -92,6 +95,11 @@ const Workspace = {
     new: async function (name = null, creatorId = null) {
         console.log('> debug > Workspace::new (server/models/workspace.js)')
         if (!name) return { result: null, message: "name cannot be null" };
+
+        if (encoding.detect(name) !== "ASCII") { result: null, message: "name must be ascii."};
+        // 'UNICODE'
+        // 'ASCII'
+
         var slug = slugify(name, { lower: true });
 
         const existingBySlug = await this.get(`slug = ${escape(slug)}`);
