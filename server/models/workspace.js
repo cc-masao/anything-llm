@@ -5,7 +5,8 @@ const { WorkspaceUser } = require("./workspaceUsers");
 const { escape } = require("sqlstring-sqlite");
 
 const Workspace = {
-  tablename: "workspaces",
+    tablename: "workspaces",
+
   writable: [
     // Used for generic updates so we can validate keys in request body
     "name",
@@ -16,7 +17,8 @@ const Workspace = {
     "lastUpdatedAt",
     "openAiPrompt",
   ],
-  colsInit: `
+
+    colsInit: `
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   slug TEXT NOT NULL UNIQUE,
@@ -78,45 +80,51 @@ const Workspace = {
     if (tracing) db.on("trace", (sql) => console.log(sql));
     return db;
   },
-  new: async function (name = null, creatorId = null) {
-    if (!name) return { result: null, message: "name cannot be null" };
-    var slug = slugify(name, { lower: true });
 
-    const existingBySlug = await this.get(`slug = ${escape(slug)}`);
-    if (existingBySlug !== null) {
-      const slugSeed = Math.floor(10000000 + Math.random() * 90000000);
-      slug = slugify(`${name}-${slugSeed}`, { lower: true });
-    }
+    new: async function (name = null, creatorId = null) {
+        consolg.log('> debug > Workspace::new (server/models/workspace.js)')
+        if (!name) return { result: null, message: "name cannot be null" };
+        var slug = slugify(name, { lower: true });
 
-    const db = await this.db();
-    const { id, success, message } = await db
-      .run(`INSERT INTO ${this.tablename} (name, slug) VALUES (?, ?)`, [
-        name,
-        slug,
-      ])
-      .then((res) => {
-        return { id: res.lastID, success: true, message: null };
-      })
-      .catch((error) => {
-        return { id: null, success: false, message: error.message };
-      });
+        const existingBySlug = await this.get(`slug = ${escape(slug)}`);
+        if (existingBySlug !== null) {
+            const slugSeed = Math.floor(10000000 + Math.random() * 90000000);
+            slug = slugify(`${name}-${slugSeed}`, { lower: true });
+        }
 
-    if (!success) {
-      db.close();
-      return { workspace: null, message };
-    }
+        console.log(name);
+        console.log(slug)
 
-    const workspace = await db.get(
-      `SELECT * FROM ${this.tablename} WHERE id = ${id}`
-    );
-    db.close();
+        const db = await this.db();
+        const { id, success, message } = await db
+            .run(`INSERT INTO ${this.tablename} (name, slug) VALUES (?, ?)`, [
+                name,
+                slug,
+            ])
+            .then((res) => {
+                return { id: res.lastID, success: true, message: null };
+            })
+            .catch((error) => {
+                return { id: null, success: false, message: error.message };
+            });
 
-    // If created with a user then we need to create the relationship as well.
-    // If creating with an admin User it wont change anything because admins can
-    // view all workspaces anyway.
-    if (!!creatorId) await WorkspaceUser.create(creatorId, workspace.id);
-    return { workspace, message: null };
-  },
+        if (!success) {
+            db.close();
+            return { workspace: null, message };
+        }
+
+        const workspace = await db.get(
+            `SELECT * FROM ${this.tablename} WHERE id = ${id}`
+        );
+        db.close();
+
+        // If created with a user then we need to create the relationship as well.
+        // If creating with an admin User it wont change anything because admins can
+        // view all workspaces anyway.
+        if (!!creatorId) await WorkspaceUser.create(creatorId, workspace.id);
+        return { workspace, message: null };
+    },
+
   update: async function (id = null, data = {}) {
     if (!id) throw new Error("No workspace id provided for update");
 
