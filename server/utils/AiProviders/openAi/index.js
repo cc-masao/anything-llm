@@ -111,6 +111,7 @@ class OpenAi {
     	return textResponse;
   	}
 
+	// これが呼ばれた。
   	async getChatCompletion(messages = [], { temperature = 0.7 }) {
 		console.log("debug >>> IN : getChatCompletion")
     	const model = process.env.OPEN_MODEL_PREF || "gpt-3.5-turbo";

@@ -12,11 +12,13 @@ const Telemetry = {
     if (!!result?.value) return result.value;
     return result?.value;
   },
-  connect: async function () {
-    const client = this.client();
-    const distinctId = await this.findOrCreateId();
-    return { client, distinctId };
-  },
+
+  	connect: async function () {
+    	const client = this.client();
+    	const distinctId = await this.findOrCreateId();
+    	return { client, distinctId };
+  	},
+
   isDev: function () {
     if (process.env.NODE_ENV === "development")
       return this.stubDevelopmentEvents;
@@ -29,12 +31,14 @@ const Telemetry = {
   },
 
 
-  sendTelemetry: async function (event, properties = {}) {
+  	sendTelemetry: async function (event, properties = {}) {
 		console.log('>>> debug : IN sendTelemetry (server/models/telemetry.js)')
     	try {
       		const { client, distinctId } = await this.connect();
-      		if (!client) return;
-      
+      		if (!client) {
+				console.log("client isn't available.")
+				return;
+			}
 	  		console.log(`\x1b[32m[TELEMETRY SENT]\x1b[0m`, {
         		event,
         		properties,

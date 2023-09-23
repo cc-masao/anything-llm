@@ -148,13 +148,10 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Prompt
+                  プロンプト
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  The prompt that will be used on this workspace. Define the
-                  context and instructions for the AI to generate a response.
-                  You should to provide a carefully crafted prompt so the AI can
-                  generate a relevant and accurate response.
+                このワークスペースで使用されるプロンプトです。AI が応答を生成するために必要なコンテキストと指示 (instructions) を定義します。AI が関連性の高い正確な応答を生成できるように、慎重に作成したプロンプトを提供する必要があります。
                 </p>
               </div>
               <textarea
