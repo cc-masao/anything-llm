@@ -162,7 +162,7 @@ const Chroma = {
       // because we then cannot atomically control our namespace to granularly find/remove documents
       // from vectordb.
       const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 1000,
+        chunkSize: 500, // 1000,
         chunkOverlap: 20,
       });
       const textChunks = await textSplitter.splitText(pageContent);
