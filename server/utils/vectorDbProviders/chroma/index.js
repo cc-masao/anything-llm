@@ -54,7 +54,7 @@ const Chroma = {
     return namespace?.vectorCount || 0;
   },
 
-  	similarityResponse: async function (client, namespace, queryVector) {
+	similarityResponse: async function (client, namespace, queryVector) {
 		console.log('>> debug > IN Chroma::similarityResponse (utils/vectorDbProviders/chroma/index.js) ')
 
 		const collection = await client.getCollection({ name: namespace });
@@ -107,131 +107,136 @@ const Chroma = {
     await client.deleteCollection({ name: namespace });
     return true;
   },
-  addDocumentToNamespace: async function (
-    namespace,
-    documentData = {},
-    fullFilePath = null
-  ) {
-    const { DocumentVectors } = require("../../../models/vectors");
-    try {
-      const { pageContent, docId, ...metadata } = documentData;
-      if (!pageContent || pageContent.length == 0) return false;
 
-      console.log("Adding new vectorized document into namespace", namespace);
-      const cacheResult = await cachedVectorInformation(fullFilePath);
-      if (cacheResult.exists) {
-        const { client } = await this.connect();
-        const collection = await client.getOrCreateCollection({
-          name: namespace,
-          metadata: { "hnsw:space": "cosine" },
-        });
-        const { chunks } = cacheResult;
-        const documentVectors = [];
 
-        for (const chunk of chunks) {
-          const submission = {
-            ids: [],
-            embeddings: [],
-            metadatas: [],
-            documents: [],
-          };
+  	addDocumentToNamespace: async function (
+    	namespace,
+    	documentData = {},
+    	fullFilePath = null
+  	) {
+    	const { DocumentVectors } = require("../../../models/vectors");
+    	try {
+      		const { pageContent, docId, ...metadata } = documentData;
+      		if (!pageContent || pageContent.length == 0) return false;
 
-          // Before sending to Chroma and saving the records to our db
-          // we need to assign the id of each chunk that is stored in the cached file.
-          chunk.forEach((chunk) => {
-            const id = uuidv4();
-            const { id: _id, ...metadata } = chunk.metadata;
-            documentVectors.push({ docId, vectorId: id });
-            submission.ids.push(id);
-            submission.embeddings.push(chunk.values);
-            submission.metadatas.push(metadata);
-            submission.documents.push(metadata.text);
-          });
+      		console.log("Adding new vectorized document into namespace", namespace);
+      		const cacheResult = await cachedVectorInformation(fullFilePath);
+      		if (cacheResult.exists) {
+        		const { client } = await this.connect();
+        		const collection = await client.getOrCreateCollection({
+          			name: namespace,
+          			metadata: { "hnsw:space": "cosine" },
+        		});
+        		const { chunks } = cacheResult;
+        		const documentVectors = [];
 
-          const additionResult = await collection.add(submission);
-          if (!additionResult)
-            throw new Error("Error embedding into ChromaDB", additionResult);
-        }
+        		for (const chunk of chunks) {
+          			const submission = {
+            			ids: [],
+            			embeddings: [],
+            			metadatas: [],
+            			documents: [],
+          			};
 
-        await DocumentVectors.bulkInsert(documentVectors);
-        return true;
-      }
+          			// Before sending to Chroma and saving the records to our db
+          			// we need to assign the id of each chunk that is stored in the cached file.
+          			chunk.forEach((chunk) => {
+            			const id = uuidv4();
+            			const { id: _id, ...metadata } = chunk.metadata;
+            			documentVectors.push({ docId, vectorId: id });
+            			submission.ids.push(id);
+            			submission.embeddings.push(chunk.values);
+            			submission.metadatas.push(metadata);
+            			submission.documents.push(metadata.text);
+          			});
 
-      // If we are here then we are going to embed and store a novel document.
-      // We have to do this manually as opposed to using LangChains `Chroma.fromDocuments`
-      // because we then cannot atomically control our namespace to granularly find/remove documents
-      // from vectordb.
-      const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 500, // 1000,
-        chunkOverlap: 20,
-      });
-      const textChunks = await textSplitter.splitText(pageContent);
+          			const additionResult = await collection.add(submission);
+          			if (!additionResult)
+            			throw new Error("Error embedding into ChromaDB", additionResult);
+        		} // for
 
-      console.log("Chunks created from document:", textChunks.length);
-      const LLMConnector = getLLMProvider();
-      const documentVectors = [];
-      const vectors = [];
-      const vectorValues = await LLMConnector.embedChunks(textChunks);
-      const submission = {
-        ids: [],
-        embeddings: [],
-        metadatas: [],
-        documents: [],
-      };
+        		await DocumentVectors.bulkInsert(documentVectors);
+        		return true;
+      		} // if (cacheResult.exists) {
 
-      if (!!vectorValues && vectorValues.length > 0) {
-        for (const [i, vector] of vectorValues.entries()) {
-          const vectorRecord = {
-            id: uuidv4(),
-            values: vector,
-            // [DO NOT REMOVE]
-            // LangChain will be unable to find your text if you embed manually and dont include the `text` key.
-            // https://github.com/hwchase17/langchainjs/blob/2def486af734c0ca87285a48f1a04c057ab74bdf/langchain/src/vectorstores/pinecone.ts#L64
-            metadata: { ...metadata, text: textChunks[i] },
-          };
+      		// If we are here then we are going to embed and store a novel document.
+      		// We have to do this manually as opposed to using LangChains `Chroma.fromDocuments`
+      		// because we then cannot atomically control our namespace to granularly find/remove documents
+      		// from vectordb.
+      		const textSplitter = new RecursiveCharacterTextSplitter({
+        		chunkSize: 500, // 1000,
+        		chunkOverlap: 20,
+      		});
+      		const textChunks = await textSplitter.splitText(pageContent);
 
-          submission.ids.push(vectorRecord.id);
-          submission.embeddings.push(vectorRecord.values);
-          submission.metadatas.push(metadata);
-          submission.documents.push(textChunks[i]);
+      		console.log("Chunks created from document:", textChunks.length);
+      		const LLMConnector = getLLMProvider();
+      		const documentVectors = [];
+      		const vectors = [];
+      		const vectorValues = await LLMConnector.embedChunks(textChunks);
+      		const submission = {
+        		ids: [],
+        		embeddings: [],
+        		metadatas: [],
+        		documents: [],
+      		};
 
-          vectors.push(vectorRecord);
-          documentVectors.push({ docId, vectorId: vectorRecord.id });
-        }
-      } else {
-        console.error(
-          "Could not use OpenAI to embed document chunks! This document will not be recorded."
-        );
-      }
+      		if (!!vectorValues && vectorValues.length > 0) {
+        		for (const [i, vector] of vectorValues.entries()) {
+          			const vectorRecord = {
+            			id: uuidv4(),
+            			values: vector,
+            			// [DO NOT REMOVE]
+            			// LangChain will be unable to find your text if you embed manually and dont include the `text` key.
+            			// https://github.com/hwchase17/langchainjs/blob/2def486af734c0ca87285a48f1a04c057ab74bdf/langchain/src/vectorstores/pinecone.ts#L64
+            			metadata: { ...metadata, text: textChunks[i] },
+          			};
 
-      const { client } = await this.connect();
-      const collection = await client.getOrCreateCollection({
-        name: namespace,
-        metadata: { "hnsw:space": "cosine" },
-      });
+          			submission.ids.push(vectorRecord.id);
+          			submission.embeddings.push(vectorRecord.values);
+          			submission.metadatas.push(metadata);
+          			submission.documents.push(textChunks[i]);
 
-      if (vectors.length > 0) {
-        const chunks = [];
+          			vectors.push(vectorRecord);
+          			documentVectors.push({ docId, vectorId: vectorRecord.id });
+				} // for
 
-        console.log("Inserting vectorized chunks into Chroma collection.");
-        for (const chunk of toChunks(vectors, 500)) chunks.push(chunk);
+			} else {
+        		console.error(
+          			"Could not use OpenAI to embed document chunks! This document will not be recorded."
+        		);
+      		} // if (!!vectorValues && vectorValues.length > 0) {
 
-        const additionResult = await collection.add(submission);
-        if (!additionResult)
-          throw new Error("Error embedding into ChromaDB", additionResult);
+      		const { client } = await this.connect();
+      		const collection = await client.getOrCreateCollection({
+        		name: namespace,
+        		metadata: { "hnsw:space": "cosine" },
+      		});
 
-        await storeVectorResult(chunks, fullFilePath);
-      }
+      		if (vectors.length > 0) {
+        		const chunks = [];
 
-      await DocumentVectors.bulkInsert(documentVectors);
-      return true;
-    } catch (e) {
-      console.error(e);
-      console.error("addDocumentToNamespace", e.message);
-      return false;
-    }
-  },
-  deleteDocumentFromNamespace: async function (namespace, docId) {
+        		console.log("Inserting vectorized chunks into Chroma collection.");
+        		for (const chunk of toChunks(vectors, 500)) chunks.push(chunk);
+
+        		const additionResult = await collection.add(submission);
+        		if (!additionResult)
+          			throw new Error("Error embedding into ChromaDB", additionResult);
+
+        		await storeVectorResult(chunks, fullFilePath);
+      		} // if
+
+      		await DocumentVectors.bulkInsert(documentVectors);
+      		return true;
+
+		} catch (e) {
+      		console.error(e);
+      		console.error("addDocumentToNamespace", e.message);
+      		return false;
+    	}
+  	},
+
+	deleteDocumentFromNamespace: async function (namespace, docId) {
     const { DocumentVectors } = require("../../../models/vectors");
     const { client } = await this.connect();
     if (!(await this.namespaceExists(client, namespace))) return;
