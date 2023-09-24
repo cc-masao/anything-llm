@@ -115,10 +115,6 @@ export default function DefaultChatContainer() {
             簡単です。すべてのコレクションは{" "}「<b>ワークスペース</b>」と呼ばれるバケットに組み込まれます。
             ワークスペースはファイル、ドキュメント、画像、PDF やその他のファイルのバケットで、
             これらは  LLM が理解して会話で利用できるものに変換されます。
-            <!-- It's simple. All collections are organized into buckets we call{" "}
-            <b>"Workspaces"</b>. Workspaces are buckets of files, documents,
-            images, PDFs, and other files which will be transformed into
-            something LLM's can understand and use in conversation. // -->
             <br />
             <br />
             ファイルはいつでも追加または削除できます。
