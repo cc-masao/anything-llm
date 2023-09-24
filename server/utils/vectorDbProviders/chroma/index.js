@@ -63,9 +63,10 @@ const Chroma = {
       		sourceDocuments: [],
     	};
 
+		console.log(process.env.CC_SEARCH_LIMIT)
     	const response = await collection.query({
       		queryEmbeddings: queryVector,
-      		nResults: 3, // 4,
+      		nResults: process.env.CC_SEARCH_LIMIT, // 4,
     	});
 
 		response.ids[0].forEach((_, i) => {
@@ -163,9 +164,10 @@ const Chroma = {
       		// We have to do this manually as opposed to using LangChains `Chroma.fromDocuments`
       		// because we then cannot atomically control our namespace to granularly find/remove documents
       		// from vectordb.
+			console.log( process.env.CC_CHUNK_SIZE, process.env.CC_CHUNK_OVERLAP)
       		const textSplitter = new RecursiveCharacterTextSplitter({
-        		chunkSize: 500, // 1000,
-        		chunkOverlap: 20,
+        		chunkSize: process.env.CC_CHUNK_SIZE, // 1000,
+        		chunkOverlap: process.env.CC_CHUNK_OVERLAP, // 20,
       		});
       		const textChunks = await textSplitter.splitText(pageContent);
 
