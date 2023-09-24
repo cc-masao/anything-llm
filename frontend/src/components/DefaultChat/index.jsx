@@ -70,12 +70,11 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            AnythingLLM can run totally locally on your machine with little
-            overhead you wont even notice it's there! No GPU needed. Cloud and
-            on-premises installation is available as well.
+            AnythingLLM はわずかな負荷で貴方のマシン上で完全にローカルで実行できます。
+            貴方はそこにあることさえ気づかないでしょう！GPUは必要ありません。
+            クラウドでもオンプレミスでもインストールが可能です。
             <br />
-            The AI tooling ecosystem gets more powerful everyday. AnythingLLM
-            makes it easy to use.
+            AI ツールのエコシステムは日々強力になっています。AnythingLLM をその利用を簡単にします。
           </p>
           <a
             href={paths.github()}
@@ -84,7 +83,7 @@ export default function DefaultChatContainer() {
           >
             <GitMerge className="h-4 w-4" />
             <p className="text-slate-800 dark:text-slate-200 text-sm md:text-lg leading-loose">
-              Create an issue on Github
+              Github で issue を作成する
             </p>
           </a>
         </div>
@@ -99,7 +98,7 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-slate-200 dark:bg-amber-800 rounded-b-2xl rounded-tl-2xl rounded-tr-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            How do I get started?!
+            どのように始めればよいでしょう？
           </p>
         </div>
       </div>
@@ -113,13 +112,16 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            It's simple. All collections are organized into buckets we call{" "}
+            簡単です。すべてのコレクションは{" "}「<b>ワークスペース</b>」と呼ばれるバケットに組み込まれます。
+            ワークスペースはファイル、ドキュメント、画像、PDF やその他のファイルのバケットで、
+            これらは  LLM が理解して会話で利用できるものに変換されます。
+            <!-- It's simple. All collections are organized into buckets we call{" "}
             <b>"Workspaces"</b>. Workspaces are buckets of files, documents,
             images, PDFs, and other files which will be transformed into
-            something LLM's can understand and use in conversation.
+            something LLM's can understand and use in conversation. // -->
             <br />
             <br />
-            You can add and remove files at anytime.
+            ファイルはいつでも追加または削除できます。
           </p>
           <button
             onClick={showNewWsModal}
@@ -127,7 +129,7 @@ export default function DefaultChatContainer() {
           >
             <Plus className="h-4 w-4" />
             <p className="text-slate-800 dark:text-slate-200 text-sm md:text-lg leading-loose">
-              Create your first workspace
+              貴方の最初のワークスペースを作成する
             </p>
           </button>
         </div>
@@ -142,8 +144,7 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-slate-200 dark:bg-amber-800 rounded-b-2xl rounded-tl-2xl rounded-tr-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            Is this like an AI dropbox or something? What about chatting? It is
-            a chatbot isn't it?
+            これは AI ドロップボックスか何かのようなものですか？チャットについてはどうでしょう？チャットボックスですよね？
           </p>
         </div>
       </div>
@@ -157,24 +158,21 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            AnythingLLM is more than a smarter Dropbox.
+          AnythingLLM は単なるスマートな Dropbox ではありません。
             <br />
             <br />
-            AnythingLLM offers two ways of talking with your data:
+            AnythingLLM はデータと会話する 2 つの方法を提供します :
             <br />
             <br />
-            <i>Query:</i> Your chats will return data or inferences found with
-            the documents in your workspace it has access to. Adding more
-            documents to the Workspace make it smarter!
+            <i>Query (クエリー) :</i> チャットはアクセス可能なワークスペース内のドキュメントで見つかったデータや推論を返します。
+            ワークスペースにより多くのドキュメントを追加すればより賢くなります！
             <br />
             <br />
-            <i>Conversational:</i> Your documents + your on-going chat history
-            both contribute to the LLM knowledge at the same time. Great for
-            appending real-time text-based info or corrections and
-            misunderstandings the LLM might have.
+            <i>Conversational  (会話形式) :</i> ドキュメント + 進行中のチャット履歴の両方が同時に LLM 知識に貢献します。
+            リアルタイムなテキストベースの情報の追加や、LLM が持つかもしれない誤解の修正に最適です。
             <br />
             <br />
-            You can toggle between either mode <i>in the middle of chatting!</i>
+            <i>チャットの途中で</i> いずれのモードも切り替えることができます。
           </p>
         </div>
       </div>
@@ -188,7 +186,7 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-slate-200 dark:bg-amber-800 rounded-b-2xl rounded-tl-2xl rounded-tr-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            Wow, this sounds amazing, let me try it out already!
+            なるほど。それは凄い、すぐに試してみましょう！
           </p>
         </div>
       </div>
@@ -202,7 +200,7 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            Have Fun!
+            楽しんでください！
           </p>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-4">
             <a
@@ -212,16 +210,16 @@ export default function DefaultChatContainer() {
             >
               <GitHub className="h-4 w-4" />
               <p className="text-slate-800 dark:text-slate-200 text-sm md:text-lg leading-loose">
-                Star on GitHub
+                GitHub のスター
               </p>
             </a>
             <a
-              href={paths.mailToMintplex()}
+              href={paths.mailToClassCat()}
               className="mt-4 w-fit flex flex-grow gap-x-2 py-[5px] px-4 border border-slate-400 rounded-lg text-slate-800 dark:text-slate-200 justify-start items-center hover:bg-slate-100 dark:hover:bg-stone-900 dark:bg-stone-900"
             >
               <Mail className="h-4 w-4" />
               <p className="text-slate-800 dark:text-slate-200 text-sm md:text-lg leading-loose">
-                Contact Mintplex Labs
+                クラスキャットにコンタクト
               </p>
             </a>
           </div>
