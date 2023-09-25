@@ -160,20 +160,23 @@ class OpenAi {
     return result?.[0] || [];
   }
 
-  async embedChunks(textChunks = []) {
-    const {
-      data: { data },
-    } = await this.openai.createEmbedding({
-      model: "text-embedding-ada-002",
-      input: textChunks,
-    });
-    console.log('debug : embedChunks called.')
+  	async embedChunks(textChunks = []) {
+		console.log('>> debug > openAi::embedChunks.')
+		const {
+      		data: { data },
+		} = await this.openai.embeddings.create ({
+		// } = await this.openai.createEmbedding({
+      			model: "text-embedding-ada-002",
+      			input: textChunks,
+    		});
 
-    return data.length > 0 &&
-      data.every((embd) => embd.hasOwnProperty("embedding"))
-      ? data.map((embd) => embd.embedding)
-      : null;
-  }
+
+    	return data.length > 0 &&
+      		data.every((embd) => embd.hasOwnProperty("embedding"))
+      		? data.map((embd) => embd.embedding)
+      		: null;
+  	}
+
 }
 
 module.exports = {
