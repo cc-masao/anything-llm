@@ -24,20 +24,20 @@ class OpenAi {
 
 	// API キーの保持はしていない。
 	constructor() {
+		/*
 		const {OpenAI } =  require("openai");
 		const openai = new OpenAI({
 			apiKey: process.env.OPEN_AI_KEY,
 		});
 		this.openai = openai;
+		*/
 
-		/*
     	const { Configuration, OpenAIApi } = require("openai");
     	const config = new Configuration({
       		apiKey: process.env.OPEN_AI_KEY,
     	});
     	const openai = new OpenAIApi(config);
     	this.openai = openai;
-		*/
 	}
 
 	//  "gpt-4", "gpt-3.5-turbo" のみ許可。より長いモデルは？
@@ -164,21 +164,23 @@ class OpenAi {
 		console.log('>> debug > openAi::embedChunks.')
 		const {
       		data: { data },
-		} = await this.openai.embeddings.create ({
-		// } = await this.openai.createEmbedding({
+		//} = await this.openai.embeddings.create ({
+		} = await this.openai.createEmbedding({
       			model: "text-embedding-ada-002",
       			input: textChunks,
     		});
 
-		return data.every((embd) => embd.hasOwnProperty("embedding"))
+		/*return data.every((embd) => embd.hasOwnProperty("embedding"))
 			? data.map((embd) => embd.embedding)
 			: null;
+		*/
 
-    	/* return data.length > 0 &&
+		console.log(data)
+
+    	return data.length > 0 &&
       		data.every((embd) => embd.hasOwnProperty("embedding"))
       		? data.map((embd) => embd.embedding)
       		: null;
-		*/
   	}
 
 }
