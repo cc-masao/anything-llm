@@ -70,12 +70,12 @@ export default function Appearance() {
     if (type === "user") {
       setMessages([
         ...messages,
-        { user: "Double click to edit...", response: "" },
+        { user: "ダブルクリックして編集...", response: "" },
       ]);
     } else {
       setMessages([
         ...messages,
-        { user: "", response: "Double click to edit..." },
+        { user: "", response: "ダブルクリックして編集..." },
       ]);
     }
   };
