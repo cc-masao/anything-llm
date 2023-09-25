@@ -122,11 +122,19 @@ class OpenAi {
 
 		const { data } = await this.openai.createChatCompletion({
 			model,
+        	messages,
+			temperature,
+	  	});
+
+		/*
+		const { data } = await this.openai.createChatCompletion({
+			model,
         	temperature: temperature,
         	n: 1,
 			max_tokens:  process.env.CC_MAX_TOKENS,
         	messages: messages,
 	  	});
+		*/
 		/*
     	const { data } = await this.openai.createChatCompletion({
       		model,
