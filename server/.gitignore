@@ -3,6 +3,8 @@
 storage/assets/*
 !storage/assets/anything-llm-dark.png
 !storage/assets/anything-llm-light.png
+!storage/assets/classcat-kbase-dark.png
+!storage/assets/classcat-kbase-light.png
 storage/documents/*
 storage/vector-cache/*.json
 storage/exports
