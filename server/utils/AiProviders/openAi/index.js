@@ -24,13 +24,21 @@ class OpenAi {
 
 	// API キーの保持はしていない。
 	constructor() {
+		const {OpenAI } =  require("openai");
+		const openai = new OpenAI({
+			apiKey: process.env.OPEN_AI_KEY,
+		});
+		this openai = openai;
+
+		/*
     	const { Configuration, OpenAIApi } = require("openai");
     	const config = new Configuration({
       		apiKey: process.env.OPEN_AI_KEY,
     	});
     	const openai = new OpenAIApi(config);
     	this.openai = openai;
-  	}
+		*/
+	}
 
 	//  "gpt-4", "gpt-3.5-turbo" のみ許可。より長いモデルは？
   	isValidChatModel(modelName = "") {
