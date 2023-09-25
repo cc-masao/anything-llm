@@ -57,7 +57,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
   const deleteWorkspace = async () => {
     if (
       !window.confirm(
-        `You are about to delete your entire ${workspace.name} workspace. This will remove all vector embeddings on your vector database.\n\nThe original source files will remain untouched. This action is irreversible.`
+        `ワークスペース ${workspace.name} 全体を削除しようとしています。 これはベクトルデータベース上のすべてのベクトル埋め込みを削除します。\n\n元のソース ファイルはそのまま残ります。 このアクションは不可逆で元に戻せません。`
       )
     )
       return false;
@@ -193,7 +193,7 @@ function ModalWrapper({ deleteWorkspace, children }) {
           type="button"
           className="border border-transparent text-gray-500 bg-white hover:bg-red-100 rounded-lg text-sm font-medium px-5 py-2.5 hover:text-red-900 focus:z-10 dark:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-red-600"
         >
-          Delete Workspace
+          ワークスペースの削除
         </button>
       </div>
     </>

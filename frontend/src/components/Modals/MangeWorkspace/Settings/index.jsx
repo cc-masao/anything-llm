@@ -66,7 +66,7 @@ export default function WorkspaceSettings({ workspace }) {
         <div className="flex flex-col gap-y-1 w-full">
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
-              Edit your workspace's settings
+              貴方のワークスペースの設定を変更します。
             </p>
           </div>
 
@@ -91,7 +91,7 @@ export default function WorkspaceSettings({ workspace }) {
                   ワークスペース名
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  This will only change the display name of your workspace.
+                  これはワークスペースの表示名だけを変更します。
                 </p>
               </div>
               <input
@@ -117,13 +117,11 @@ export default function WorkspaceSettings({ workspace }) {
                   LLM Temperature
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  This setting controls how "random" or dynamic your chat
-                  responses will be.
-                  <br />
-                  The higher the number (2.0 maximum) the more random and
-                  incoherent.
-                  <br />
-                  Recommended: 0.7
+                この設定はチャットの応答がどの程度「ランダム」あるいは動的になるかを制御します。
+                <br/>
+                数値が大きければ (最大 2.0)、よりランダムで一貫性がなくなります。
+                <br/>
+                推奨値 : 0.7
                 </p>
               </div>
               <input
@@ -174,14 +172,12 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Chat History
+                  チャット履歴
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  The number of previous chats that will be included in the
-                  response's short-term memory.
+                応答の短期メモリに含まれる、それ以前のチャットの数です。
                   <br />
-                  Recommend 20. Anything more than 45 is likely to lead to
-                  continuous chat failures depending on message size.
+                  推奨値は 20 です。45 を超えると、メッセージサイズに応じて連続的なチャットの失敗に繋がる可能性が高くなります。
                 </p>
               </div>
               <input
