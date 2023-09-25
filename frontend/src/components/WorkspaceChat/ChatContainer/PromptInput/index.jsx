@@ -154,19 +154,19 @@ function CommandMenu({ workspace, show, handleClick, hide }) {
   const COMMANDS = [
     {
       cmd: "/conversation",
-      description: "- switch to chat mode (remembers recent chat history) .",
+      description: "- チャットモードに切り替えます (最近のチャット履歴を記憶します)。",
     },
     {
       cmd: "/query",
-      description: "- switch to query mode (does not remember previous chats).",
+      description: "- クエリーモードに切り替えます (以前のチャットは記憶しません)。",
     },
-    { cmd: "/reset", description: "- clear current chat history." },
+    { cmd: "/reset", description: "- 現在のチャット履歴をクリアします。" },
   ];
 
   return (
     <div className="absolute top-[-25vh] md:top-[-23vh] min-h-[200px] flex flex-col rounded-lg border border-slate-400 p-2 pt-4 bg-gray-50 dark:bg-stone-600">
       <div className="flex justify-between items-center border-b border-slate-400 px-2 py-1 ">
-        <p className="text-gray-800 dark:text-slate-200">Available Commands</p>
+        <p className="text-gray-800 dark:text-slate-200">利用可能なコマンド</p>
         <button
           type="button"
           onClick={hide}
