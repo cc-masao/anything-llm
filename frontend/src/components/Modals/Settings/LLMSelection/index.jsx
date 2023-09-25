@@ -32,9 +32,9 @@ export default function LLMSelection({
     for (var [key, value] of form.entries()) data[key] = value;
     const { error } = await System.updateSystem(data);
     if (error) {
-      showToast(`Failed to save LLM settings: ${error}`, "error");
+      showToast(`LLM 設定の保存に失敗しました : ${error}`, "error");
     } else {
-      showToast("LLM settings saved successfully.", "success");
+      showToast("LLM 設定が正常に保存されました", "success");
     }
     setSaving(false);
     setHasChanges(!!error ? true : false);
@@ -44,8 +44,8 @@ export default function LLMSelection({
       <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
         <div className="flex items-start justify-between px-6 py-4">
           <p className="text-gray-800 dark:text-stone-200 text-base ">
-          これらは選択する LLM チャット & 埋め込みプロバイダーのクレデンシャルと設定です。
-          これらのキーが現在の正しいものであることは重要です、
+          これらは選択する LLM チャット & 埋め込みプロバイダーの認証情報と設定です。
+          これらのキーが最新で正しいことは重要です、
           そうでなければ ClassCat&reg; KBase は正しく機能しません。
           </p>
         </div>
@@ -131,7 +131,7 @@ export default function LLMSelection({
                 <>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Azure Service Endpoint
+                      Azure サービス・エンドポイント
                     </label>
                     <input
                       type="url"
@@ -155,7 +155,7 @@ export default function LLMSelection({
                       name="AzureOpenAiKey"
                       disabled={!canDebug}
                       className="bg-gray-50 border border-gray-500 text-gray-900 placeholder-gray-500 text-sm rounded-lg dark:bg-stone-700 focus:border-stone-500 block w-full p-2.5 dark:text-slate-200 dark:placeholder-stone-500 dark:border-slate-200"
-                      placeholder="Azure OpenAI API Key"
+                      placeholder="Azure OpenAI API キー"
                       defaultValue={
                         settings?.AzureOpenAiKey ? "*".repeat(20) : ""
                       }
@@ -167,7 +167,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Chat Model Deployment Name
+                      チャットモデル配備名
                     </label>
                     <input
                       type="text"
@@ -184,7 +184,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Embedding Model Deployment Name
+                      埋め込みモデル配備名
                     </label>
                     <input
                       type="text"
