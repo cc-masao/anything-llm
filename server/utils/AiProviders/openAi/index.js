@@ -170,11 +170,15 @@ class OpenAi {
       			input: textChunks,
     		});
 
+		return data.every((embd) => embd.hasOwnProperty("embedding"))
+			? data.map((embd) => embd.embedding)
+			: null;
 
-    	return data.length > 0 &&
+    	/* return data.length > 0 &&
       		data.every((embd) => embd.hasOwnProperty("embedding"))
       		? data.map((embd) => embd.embedding)
       		: null;
+		*/
   	}
 
 }
