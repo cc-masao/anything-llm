@@ -222,7 +222,7 @@ export default function WorkspaceSettings({ workspace }) {
             type="submit"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 whitespace-nowrap text-sm font-medium px-2 md:px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-black dark:text-slate-200 dark:border-transparent dark:hover:text-slate-200 dark:hover:bg-gray-900 dark:focus:ring-gray-800"
           >
-            {saving ? "Updating..." : "Update workspace"}
+            {saving ? "更新中..." : "ワークスペースの更新"}
           </button>
         )}
       </div>

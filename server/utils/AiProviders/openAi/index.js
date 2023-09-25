@@ -113,10 +113,11 @@ class OpenAi {
 
 	// これが呼ばれた。
   	async getChatCompletion(messages = [], { temperature = 0.7 }) {
-		console.log("debug >>> IN : getChatCompletion")
-		console.log(model)
+		console.log("# debug >>> IN : getChatCompletion")
 		console.log(messages)
     	const model = process.env.OPEN_MODEL_PREF || "gpt-3.5-turbo";
+		console.log(model)
+
 		const { data } = await this.openai.createChatCompletion({
 			model,
         	temperature: Number(workspace?.openAiTemp ?? 0.7),

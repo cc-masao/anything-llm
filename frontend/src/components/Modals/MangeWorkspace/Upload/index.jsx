@@ -13,7 +13,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
   const [files, setFiles] = useState([]);
 
   const handleUploadSuccess = () => {
-    showToast("File uploaded successfully", "success");
+    showToast("ファイルが正常にアップロードされました", "success");
   };
 
   const handleUploadError = (message) => {

@@ -88,7 +88,7 @@ export default function DocumentSettings({ workspace }) {
   const updateWorkspace = async (e) => {
     e.preventDefault();
     setSaving(true);
-    showToast("Updating workspace...", "info", { autoClose: false });
+    showToast("ワークスペース更新中...", "info", { autoClose: false });
     setShowConfirmation(false);
 
     const changes = docChanges();
@@ -220,7 +220,7 @@ export default function DocumentSettings({ workspace }) {
             type="submit"
             className="text-slate-200 bg-black-900 px-4 py-2 rounded-lg hover:bg-gray-900 whitespace-nowrap text-sm"
           >
-            {saving ? "Saving..." : "Confirm Changes"}
+            {saving ? "セーブ中..." : "変更の確認"}
           </button>
         </div>
       </div>

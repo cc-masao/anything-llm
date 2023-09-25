@@ -127,7 +127,7 @@ export default function EditWorkspaceUsersModal({ workspace, users }) {
                 </div>
                 {error && (
                   <p className="text-red-600 dark:text-red-400 text-sm">
-                    Error: {error}
+                    エラー: {error}
                   </p>
                 )}
               </div>
@@ -138,13 +138,13 @@ export default function EditWorkspaceUsersModal({ workspace, users }) {
                 type="button"
                 className="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:hover:bg-stone-900"
               >
-                Cancel
+                キャンセル
               </button>
               <button
                 type="submit"
                 className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-black dark:text-slate-200 dark:border-transparent dark:hover:text-slate-200 dark:hover:bg-gray-900 dark:focus:ring-gray-800"
               >
-                Update workspace
+                ワークスペースの更新
               </button>
             </div>
           </form>
