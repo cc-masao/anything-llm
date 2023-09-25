@@ -82,7 +82,7 @@ class OpenAi {
     const textResponse = await this.openai
       	.createChatCompletion({
         	model,
-        	temperature: 0.5, // Number(workspace?.openAiTemp ?? 0.7),
+        	temperature: Number(workspace?.openAiTemp ?? 0.7),
         	n: 1,
 			max_tokens: 1000,
         	messages: [
@@ -117,12 +117,14 @@ class OpenAi {
 		console.log(messages)
     	const model = process.env.OPEN_MODEL_PREF || "gpt-3.5-turbo";
 		console.log(model)
+		console.log(temperature)
+		console.log(process.env.CC_MAX_TOKENS)
 
 		const { data } = await this.openai.createChatCompletion({
 			model,
-        	temperature: Number(workspace?.openAiTemp ?? 0.7),
+        	temperature: temperature,
         	n: 1,
-			max_tokens: 4000,
+			max_tokens:  process.env.CC_MAX_TOKENS,
         	messages: messages,
 	  	});
 		/*
