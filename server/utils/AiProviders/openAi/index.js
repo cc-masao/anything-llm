@@ -28,7 +28,7 @@ class OpenAi {
 		const openai = new OpenAI({
 			apiKey: process.env.OPEN_AI_KEY,
 		});
-		this openai = openai;
+		this.openai = openai;
 
 		/*
     	const { Configuration, OpenAIApi } = require("openai");
