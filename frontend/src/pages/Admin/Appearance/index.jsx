@@ -44,20 +44,20 @@ export default function Appearance() {
     formData.append("logo", file);
     const { success, error } = await Admin.uploadLogo(formData);
     if (!success) {
-      showToast(`Failed to upload logo: ${error}`, "error");
+      showToast(`ロゴのアップロードに失敗しました : ${error}`, "error");
       return;
     }
 
     const logoURL = await System.fetchLogo();
     setLogo(logoURL);
-    showToast("Image uploaded successfully.", "success");
+    showToast("画像は正常にアップロードされました。", "success");
   };
 
   const handleRemoveLogo = async () => {
     const { success, error } = await Admin.removeCustomLogo();
     if (!success) {
-      console.error("Failed to remove logo:", error);
-      showToast(`Failed to remove logo: ${error}`, "error");
+      console.error("ロゴの削除に失敗しました :", error);
+      showToast(`ロゴの削除に失敗しました : ${error}`, "error");
       return;
     }
 
@@ -95,10 +95,10 @@ export default function Appearance() {
   const handleMessageSave = async () => {
     const { success, error } = await Admin.setWelcomeMessages(messages);
     if (!success) {
-      showToast(`Failed to update welcome messages: ${error}`, "error");
+      showToast(`ウェルカムメッセージの更新に失敗しました : ${error}`, "error");
       return;
     }
-    showToast("Successfully updated welcome messages.", "success");
+    showToast("ウェルカムメッセージは正常に更新されました。", "success");
     setHasChanges(false);
   };
 
@@ -166,10 +166,10 @@ export default function Appearance() {
           <div className="mb-6">
             <div className="flex flex-col gap-y-2">
               <h2 className="leading-tight font-medium text-black dark:text-white">
-                Custom Messages
+                カスタムメッセージ
               </h2>
               <p className="leading-tight text-sm text-gray-500 dark:text-slate-400">
-                Change the default messages that are displayed to the users.
+              ユーザに表示されるデフォルトメッセージを変更します。
               </p>
             </div>
             <div className="mt-6 flex flex-col gap-y-6">
