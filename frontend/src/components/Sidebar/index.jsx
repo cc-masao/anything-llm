@@ -110,10 +110,10 @@ export default function Sidebar() {
                   </a>
                 </div>
                 <a
-                  href={paths.mailToMintplex()}
+                  href={paths.mailToClassCat()}
                   className="transition-all duration-300 text-xs text-slate-500 dark:text-slate-600 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  @MintplexLabs
+                  @ClassCat
                 </a>
               </div>
             </div>
@@ -270,10 +270,10 @@ export function SidebarMobileHeader() {
                     </a>
                   </div>
                   <a
-                    href={paths.mailToMintplex()}
+                    href={paths.mailToClassCat()}
                     className="transition-all duration-300 text-xs text-slate-500 dark:text-slate-600 hover:text-blue-600 dark:hover:text-blue-400"
                   >
-                    @MintplexLabs
+                    @ClassCat
                   </a>
                 </div>
               </div>

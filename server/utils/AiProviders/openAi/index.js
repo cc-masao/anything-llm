@@ -42,7 +42,8 @@ class OpenAi {
 
 	//  "gpt-4", "gpt-3.5-turbo" のみ許可。より長いモデルは？
   	isValidChatModel(modelName = "") {
-    	const validModels = ["gpt-4", "gpt-3.5-turbo"];
+		const validModels = ["gpt-3.5-turbo", "gpt-3.5-turbo-0613", "gpt-3.5-turbo-16k", "gpt-4", "gpt-4-0613", "gpt-4-32k", "gpt-4-32k-0613"];
+		// const validModels = ["gpt-4", "gpt-3.5-turbo"];
     	return validModels.includes(modelName);
   	}
 
@@ -83,7 +84,7 @@ class OpenAi {
 	const model = process.env.OPEN_MODEL_PREF;
     if (!this.isValidChatModel(model))
       	throw new Error(
-        		`OpenAI chat: ${model} is not valid for chat completion!`
+        		`OpenAI chat: ${model} はチャット補完のためには有効ではありません！`
     	);
 
 	// max token おいたほうが良いか？
