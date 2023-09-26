@@ -148,7 +148,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      API Key
+                      API キー
                     </label>
                     <input
                       type="password"
