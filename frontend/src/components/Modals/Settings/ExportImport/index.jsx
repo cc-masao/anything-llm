@@ -73,7 +73,7 @@ function ExportData() {
       <div className="w-full flex flex-col gap-y-1 items-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 bg-slate-200 group animate-pulse">
         <p className="text-gray-800 text-lg">Exporting....</p>
         <p className="text-gray-800 text-sm italic">
-          A download will start automatically.
+          ダウンロードは自動的に開始されます。
         </p>
       </div>
     );
@@ -99,7 +99,7 @@ function ExportData() {
         className="w-full flex gap-1 justify-center items-center px-6 py-4 border border-green-200 rounded-lg dark:border-green-600 bg-green-200 group"
       >
         <Download className="h-4 w-4 text-green-800 " />
-        <p className="text-green-800 text-sm">Download Data Export</p>
+        <p className="text-green-800 text-sm">データをダウンロードしてエクスポートします</p>
       </a>
     );
   }
@@ -154,7 +154,7 @@ function ImportData() {
   if (loading) {
     return (
       <div className="w-full flex flex-col gap-y-1 items-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 bg-slate-200 group animate-pulse">
-        <p className="text-gray-800 text-lg">Importing....</p>
+        <p className="text-gray-800 text-lg">インポート中....</p>
         <p className="text-gray-800 text-sm italic">{file.name}</p>
       </div>
     );

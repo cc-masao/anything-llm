@@ -23,7 +23,7 @@ export default function Directory({
   const handleDelete = async (name, meta) => {
     if (
       !window.confirm(
-        "Are you sure you want to delete this document?\nThis will require you to re-upload and re-embed it.\nThis document will be removed from any workspace that is currently referencing it.\nThis action is not reversible."
+        "このドキュメントを削除しても良いですか？\nこの操作はドキュメントを再度アップロードして再度埋め込むことを必要とします。\nこのドキュメントはそれを現在参照しているワークスペースから削除されます。\nこの操作は不可逆で取り消しできません。"
       )
     )
       return false;
@@ -161,7 +161,7 @@ export default function Directory({
             className="flex items-center justify-end w-full"
           >
             <button className="text-sm text-slate-400 dark:text-stone-500 hover:text-red-500">
-              Purge Document
+              ドキュメントをパージ (除去) する
             </button>
           </div>
         </div>
