@@ -14,9 +14,9 @@ export default function ExportOrImportData({ hideModal = noop }) {
             複数の ClassCat&reg; KBase インスタンスがありますか？
             それとも単にバックアップや別のインスタンスからデータを再インポートすることを望みますか？それをここで行なうことができます。
             <br />
-            <i>
+            <b><i>
             これはベクトルデータベースの埋め込みを自動的に同期はしません！
-            </i>
+            </i></b>
           </p>
           <a
             className="text-gray-400 dark:text-stone-500 my-2 text-xs"

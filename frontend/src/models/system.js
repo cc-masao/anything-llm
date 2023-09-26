@@ -124,6 +124,7 @@ const System = {
       });
   },
   dataExport: async () => {
+    console.log('>> debug > IN dataExport (frontend/src/models/system.js)')
     return await fetch(`${API_BASE}/system/data-export`, {
       method: "GET",
       headers: baseHeaders(),
