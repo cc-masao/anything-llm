@@ -105,7 +105,7 @@ function systemEndpoints(app) {
             user: null,
             valid: false,
             token: null,
-            message: "[001] Invalid login credentials.",
+            message: "[001] 無効なログイン認証情報。",
           });
           return;
         }
@@ -116,7 +116,7 @@ function systemEndpoints(app) {
             user: null,
             valid: false,
             token: null,
-            message: "[002] Invalid login credentials.",
+            message: "[002] 無効なログイン認証情報。",
           });
           return;
         }

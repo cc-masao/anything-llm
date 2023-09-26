@@ -315,7 +315,7 @@ function LogoutButton() {
     >
       <LogOut className="h-4 w-4" />
       <p className="text-slate-800 dark:text-slate-200 text-xs leading-loose font-semibold">
-        Log out of {user.username}
+        {user.username} をログアウト
       </p>
     </button>
   );
