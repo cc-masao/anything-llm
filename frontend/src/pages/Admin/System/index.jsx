@@ -22,7 +22,7 @@ export default function AdminSystem() {
     });
     setSaving(false);
     setHasChanges(false);
-    showToast("System preferences updated successfully.", "success");
+    showToast("システム設定が正常に更新されました。", "success");
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function AdminSystem() {
             <div className="w-full flex flex-col gap-y-1">
               <div className="items-center flex gap-x-4">
                 <p className="text-3xl font-semibold text-slate-600 dark:text-slate-200">
-                  System Preferences
+                  システム設定
                 </p>
                 {hasChanges && (
                   <button
@@ -63,24 +63,23 @@ export default function AdminSystem() {
                     disabled={saving}
                     className="border border-slate-800 dark:border-slate-200 px-4 py-1 rounded-lg text-slate-800 dark:text-slate-200 text-sm items-center flex gap-x-2 hover:bg-slate-800 hover:text-slate-100 dark:hover:bg-slate-200 dark:hover:text-slate-800"
                   >
-                    {saving ? "Saving..." : "Save changes"}
+                    {saving ? "保存中..." : "変更の保存"}
                   </button>
                 )}
               </div>
               <p className="text-sm font-base text-slate-600 dark:text-slate-200">
-                These are the overall settings and configurations of your
-                instance.
+                これらはインスタンスの全体的な設定と構成です。
               </p>
             </div>
 
             <div className="my-4">
               <div className="flex flex-col gap-y-2 mb-2.5">
                 <label className="leading-tight font-medium text-black dark:text-white">
-                  Users can delete workspaces
+                  ユーザがワークスペースを削除可能
                 </label>
                 <p className="leading-tight text-sm text-gray-500 dark:text-slate-400">
-                  allow non-admin users to delete workspaces that they are a
-                  part of. This would delete the workspace for everyone.
+                  管理者でないユーザが所属しているワークスペースを削除することを許容します。
+                  これはすべてのユーザについてワークスペースが削除されます。
                 </p>
               </div>
               <label className="relative inline-flex cursor-pointer items-center">
@@ -99,12 +98,11 @@ export default function AdminSystem() {
             <div className="my-4">
               <div className="flex flex-col gap-y-2 mb-2.5">
                 <label className="leading-tight font-medium text-black dark:text-white">
-                  Limit messages per user per day
+                  1日あたりのユーザ毎のメッセージの制限
                 </label>
                 <p className="leading-tight text-sm text-gray-500 dark:text-slate-400">
-                  Restrict non-admin users to a number of successful queries or
-                  chats within a 24 hour window. Enable this to prevent users
-                  from running up OpenAI costs.
+                  管理者でないユーザの 24 時間内の成功したクエリーとチャット数を制限します。
+                  これを有効にするとユーザの OpenAI のコストがかさむことを防ぎます。
                 </p>
               </div>
               <label className="relative inline-flex cursor-pointer items-center">
